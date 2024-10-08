@@ -1,4 +1,4 @@
-package org.mateus.ConsultaTabelaFipe;
+package org.mateus.ConsultaTabelaFipe.consumer;
 
 import java.io.IOException;
 import java.net.URI;
@@ -7,12 +7,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class APIConsumer {
-    public void APIConsume(String url) {
-        HttpClient client = HttpClient.newBuilder().build();
+    public String APIConsume(String url) {
+        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .build();
-
         HttpResponse<String> response = null;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -20,5 +19,8 @@ public class APIConsumer {
             throw new RuntimeException(e);
         }
         System.out.println(response.statusCode());
-        System.out.println(response.body());    }
+        System.out.println(response.body());
+        String json = response.body();
+        return json;
+    }
 }
