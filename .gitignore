@@ -1,18 +1,39 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Maven target directory
+/target/
 
-# Other files and folders
-.settings/
+# Maven specific files
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# IntelliJ IDEA specific files
+/.idea/
+/*.iws
+/*.iml
+/*.ipr
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Logs
+/logs
+*.log
+
+# Temporary files
+/tmp
+*.tmp
+*.temp
+
+# Compiled class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Spring Boot specific
+/BOOT-INF/
+/META-INF/
+/*.jar.original
+
+# OS generated files
+.DS_Store
+Thumbs.db
