@@ -18,8 +18,6 @@ public class APIConsumer {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
         String json = response.body();
         return json;
     }
