@@ -1,5 +1,6 @@
 package org.mateus.ConsultaTabelaFipe;
 
+import org.mateus.ConsultaTabelaFipe.consumer.APIConsumer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
