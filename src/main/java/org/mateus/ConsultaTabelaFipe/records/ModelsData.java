@@ -7,5 +7,6 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record ModelsData(
-        @JsonAlias("modelos") List<String>
+        @JsonAlias("codigo") int code,
+        @JsonAlias("nome") String model
 ) {}
