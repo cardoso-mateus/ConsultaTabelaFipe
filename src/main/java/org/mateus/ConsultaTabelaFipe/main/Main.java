@@ -23,22 +23,10 @@ public class Main {
         String url = null;
         url = selectVehicleType(url);
         url = selectVehicleBrand(url);
-        url = selectModel(url);
-        selectModelYear(url);
+        selectModel(url);
     }
 
-    private void selectModelYear(String url) {
-        System.out.println("\nEscolha o ano do modelo de acordo com o código ao lado");
-        String choice = input.nextLine();
-
-        url = url + choice;
-
-        String json = consumer.APIConsume(url);
-        VehicleData vehicleData = handler.consumeResponse(json, VehicleData.class);
-        System.out.println(vehicleData);
-    }
-
-    private String selectModel(String url) {
+    private void selectModel(String url) {
         System.out.println("\nEscolha um modelo de acordo com o código ao lado");
         int choice = input.nextInt();
         input.nextLine();
@@ -46,11 +34,20 @@ public class Main {
         url = url + choice + "/anos/";
 
         String json = consumer.APIConsume(url);
+        List<YearsData> yearsDataList = List.of(handler.consumeResponse(json, YearsData[].class));
 
-        List<YearsData> yearsData = List.of(handler.consumeResponse(json, YearsData[].class));
-        yearsData.forEach(System.out::println);
+        List<VehicleData> vehicleDataList = new ArrayList<>();
+        for (int i = 0; i < yearsDataList.size(); i++) {
+            var year = yearsDataList.get(i).code();
+            vehicleDataList.add(selectModelYear(url, year));
+        }
+        vehicleDataList.forEach(System.out::println);
+    }
 
-        return url;
+    private VehicleData selectModelYear(String url, String year) {
+        url = url + year;
+        String json = consumer.APIConsume(url);
+        return handler.consumeResponse(json, VehicleData.class);
     }
 
     private String selectVehicleBrand(String url) {
